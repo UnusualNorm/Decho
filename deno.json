@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "zstd_wasm": "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts"
+  }
+}

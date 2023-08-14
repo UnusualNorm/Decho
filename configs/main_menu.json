@@ -1,0 +1,27 @@
+{
+  "main_menu": {
+    "news": {
+      "offseason": {
+        "link": "https://example.com",
+        "texture": null
+      }
+    },
+    "_ts": 1692054552085,
+    "id": "main_menu",
+    "splash": {
+      "offseason": {
+        "link": "https://example.com",
+        "texture": "ui_menu_splash_screen_poster_a_shutdown_clr"
+      },
+      "season_07": {
+        "link": "https://example.com",
+        "texture": "ui_menu_splash_screen_poster_a_s7_clr"
+      }
+    },
+    "splash_version": 8,
+    "discord_link": "https://discord.gg/xZWkVZQqZq",
+    "help_link": "https://discord.gg/xZWkVZQqZq",
+    "news_link": "https://discord.gg/xZWkVZQqZq",
+    "type": "main_menu"
+  }
+}
