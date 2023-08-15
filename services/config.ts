@@ -1,4 +1,4 @@
-import { Packet, decodePacket } from "../encoder.ts";
+import { Packet, decodePackets } from "../encoder.ts";
 import {
   ConfigRequest,
   decodeConfigRequestPayload,
@@ -35,36 +35,38 @@ Deno.serve({ port: 8003 }, (req) => {
 
     console.debug(`[config] Client: ${arrayBufferToHexString(e.data)}`);
 
-    let packet: Packet;
+    let packets: Packet[];
     try {
-      packet = decodePacket(e.data);
+      packets = decodePackets(e.data);
     } catch (e) {
       console.warn(`[config] Client sent invalid packet! (${e})`);
       return;
     }
 
-    if (packet.header === headerLookup.config.request) {
-      let request: ConfigRequest;
-      try {
-        request = decodeConfigRequestPayload(packet.payload);
-      } catch (e) {
-        console.warn(`[config] Client sent invalid request! (${e})`);
-        return;
+    for (const packet of packets) {
+      if (packet.header === headerLookup.config.request) {
+        let request: ConfigRequest;
+        try {
+          request = decodeConfigRequestPayload(packet.payload);
+        } catch (e) {
+          console.warn(`[config] Client sent invalid request! (${e})`);
+          return;
+        }
+
+        console.log(
+          `[config] Client requested config type=${request.type} id=${request.id}`
+        );
+
+        let config: object;
+        try {
+          config = getConfig(request.type, request.id);
+        } catch (e) {
+          console.warn(`[config] Failed to get config! (${e})`);
+          return;
+        }
+
+        ws.send(encodeMagicPacket(ServiceType.Config));
       }
-
-      console.log(
-        `[config] Client requested config type=${request.type} id=${request.id}`
-      );
-
-      let config: object;
-      try {
-        config = getConfig(request.type, request.id);
-      } catch (e) {
-        console.warn(`[config] Failed to get config! (${e})`);
-        return;
-      }
-
-      ws.send(encodeMagicPacket(ServiceType.Config));
     }
   };
 

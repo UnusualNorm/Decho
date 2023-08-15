@@ -7,6 +7,22 @@ export type Packet = {
   magic_number: number;
 };
 
+export function decodePackets(data: ArrayBuffer, strict = true): Packet[] {
+  const packets: Packet[] = [];
+  const view = new DataView(data);
+
+  let latestPacketEnding = -1n;
+  for (let i = 0; i < data.byteLength; i++) {
+    if (latestPacketEnding >= i) continue;
+    if (view.getBigUint64(i, true) !== constant) continue;
+    const packet = decodePacket(data.slice(i), strict);
+    packets.push(packet);
+    latestPacketEnding = BigInt(i) + 24n + BigInt(packet.payload.byteLength);
+  }
+
+  return packets;
+}
+
 export function decodePacket(data: ArrayBuffer, strict = true): Packet {
   if (data.byteLength < 25) throw new Error("Packet too small");
   const view = new DataView(data);
