@@ -2,7 +2,7 @@
 
 **This isn't finished and most likely wont be for a while.**
 
-A custom implementation of the Echo VR APIs, written in Deno
+A custom implementation of the Echo VR APIs, written in [Deno](https://deno.land)
 
 ## Running/Installation
 
