@@ -14,6 +14,14 @@ Then, once Deno is properly installed and available on the command-line, you can
 deno run -A mod.ts
 ```
 
+## Debugging
+
+For debugging purposes, an option is available to trigger debug mode. Debug mode allows the host to preview the packets being sent to the server at runtime in the command-line. This can be enabled by changing the DEBUG variable in the .env file to the following.
+
+```bash
+DEBUG=true
+```
+
 ## Contributing
 
 Feel free to send a Pull Request [here](https://github.com/UnusualNorm/Decho/pulls) to contribute further towards a more open and easily accessible Echo VR to current and future players.
