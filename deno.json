@@ -1,5 +1,6 @@
 {
   "imports": {
+    "dotenv/": "https://deno.land/std@0.198.0/dotenv/",
     "zstd_wasm": "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts"
   }
 }

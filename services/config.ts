@@ -4,8 +4,9 @@ import {
   decodeConfigRequestPayload,
 } from "../encoders/config/request.ts";
 import { ServiceType, encodeMagicPacket } from "../encoders/magic_packet.ts";
+import { DEBUG } from "../mod.ts";
 import { headerLookup } from "../packet.ts";
-import { getConfig } from "../utils/config.ts";
+import { Config, getConfig } from "../utils/config.ts";
 import { arrayBufferToHexString } from "../utils/string.ts";
 import { isBinaryMessage } from "../utils/websocket.ts";
 
@@ -23,7 +24,7 @@ Deno.serve({ port: 8003 }, (req) => {
 
   const ws_send = ws.send;
   ws.send = (data: ArrayBuffer) => {
-    // console.debug(`[config] Server: ${arrayBufferToHexString(data)}`);
+    DEBUG && console.debug(`[config] Server: ${arrayBufferToHexString(data)}`);
     ws_send.call(ws, data);
   };
 
@@ -33,7 +34,8 @@ Deno.serve({ port: 8003 }, (req) => {
       return;
     }
 
-    console.debug(`[config] Client: ${arrayBufferToHexString(e.data)}`);
+    DEBUG &&
+      console.debug(`[config] Client: ${arrayBufferToHexString(e.data)}`);
 
     let packets: Packet[];
     try {
@@ -50,22 +52,24 @@ Deno.serve({ port: 8003 }, (req) => {
           request = decodeConfigRequestPayload(packet.payload);
         } catch (e) {
           console.warn(`[config] Client sent invalid request! (${e})`);
-          return;
+          continue;
         }
 
         console.log(
           `[config] Client requested config type=${request.type} id=${request.id}`
         );
 
-        let config: object;
+        let config: Config;
         try {
           config = getConfig(request.type, request.id);
         } catch (e) {
           console.warn(`[config] Failed to get config! (${e})`);
-          return;
+          continue;
         }
 
         ws.send(encodeMagicPacket(ServiceType.Config));
+      } else {
+        console.warn(`[config] Client sent unknown packet!`);
       }
     }
   };
