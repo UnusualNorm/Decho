@@ -1,9 +1,7 @@
 import { Packet, decodePackets } from "../encoder.ts";
-import {
-  ConfigRequest,
-  decodeConfigRequestPayload,
-} from "../encoders/config/request.ts";
+import { ConfigRequest, decodeConfigRequestPayload, } from "../encoders/config/request.ts";
 import { ServiceType, encodeMagicPacket } from "../encoders/magic_packet.ts";
+import { log } from "../utils/logging.ts";
 import { DEBUG } from "../mod.ts";
 import { headerLookup } from "../packet.ts";
 import { Config, getConfig } from "../utils/config.ts";
@@ -16,10 +14,10 @@ Deno.serve({ port: 8003 }, (req) => {
   }
 
   const { socket: ws, response } = Deno.upgradeWebSocket(req);
-  console.log(`[config] Client connecting...`);
+  log(`[config] Client connecting...`);
 
   ws.onopen = () => {
-    console.log("[config] Client connected!");
+    log("[config] Client connected!");
   };
 
   const ws_send = ws.send;
@@ -55,7 +53,7 @@ Deno.serve({ port: 8003 }, (req) => {
           continue;
         }
 
-        console.log(
+        log(
           `[config] Client requested config type=${request.type} id=${request.id}`
         );
 
@@ -75,7 +73,7 @@ Deno.serve({ port: 8003 }, (req) => {
   };
 
   ws.onclose = () => {
-    console.log("[config] Client disconnected!");
+    log("[config] Client disconnected!");
   };
 
   return response;
