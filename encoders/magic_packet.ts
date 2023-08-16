@@ -32,8 +32,7 @@ export function encodeMagicPacket(
   const packet: Packet = {
     constant,
     header: headerLookup.magic_packet,
-    payload: new ArrayBuffer(0),
-    magic_number: magicNumber,
+    payload: new Uint8Array([magicNumber]),
   };
 
   return encodePacket(packet);

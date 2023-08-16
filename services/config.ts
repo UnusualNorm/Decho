@@ -4,6 +4,7 @@ import {
   decodeConfigRequestPayload,
 } from "../encoders/config/request.ts";
 import { ServiceType, encodeMagicPacket } from "../encoders/magic_packet.ts";
+import { configTest } from "../example.ts";
 import { DEBUG } from "../mod.ts";
 import { headerLookup } from "../packet.ts";
 import { Config, getConfig } from "../utils/config.ts";
@@ -67,6 +68,7 @@ Deno.serve({ port: 8003 }, (req) => {
           continue;
         }
 
+        ws.send(configTest);
         ws.send(encodeMagicPacket(ServiceType.Config));
       } else {
         console.warn(`[config] Client sent unknown packet!`);
