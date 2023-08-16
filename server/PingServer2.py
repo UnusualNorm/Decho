@@ -4,7 +4,6 @@ from twisted.internet import reactor, task
 # Server configuration
 HOST = '0.0.0.0'
 PORT = 35098
-
 class GameServerProtocol(DatagramProtocol):
     def startProtocol(self):
         print(f'Serving on {HOST}:{PORT}')

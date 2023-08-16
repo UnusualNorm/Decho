@@ -1,6 +1,6 @@
 @echo off
 set cdir=%cd%
-cd %cdir%\servers\
+cd %cdir%\server\
 start GameServer.py
 start PingServer.py
 start PingServer2.py
