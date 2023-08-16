@@ -1,9 +1,9 @@
 @echo off
 set cdir=%cd%
 cd %cdir%\servers\
-start deno run -A --unstable GameServer.ts
-start deno run -A --unstable PingServer.ts
-start deno run -A --unstable PingServer2.ts
+start GameServer.py
+start PingServer.py
+start PingServer2.py
 cd %cdir%
 deno run -A mod.ts
 pause

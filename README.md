@@ -6,7 +6,7 @@ A custom implementation of the Echo VR APIs, written in [Deno](https://deno.land
 
 ## Running/Installation
 
-Given this implementation uses Deno, you must install Deno. See [Deno Installation](https://deno.land/manual/getting_started/installation) for specific steps on how to install it for your system. Deno is available on most commonly used operating systems and kernels and can run on a variety of machines.
+Given this implementation uses Deno, you must install Deno. See [Deno Installation](https://deno.land/manual/getting_started/installation) for specific steps on how to install it for your system. Deno is available on most commonly used operating systems and kernels and can run on a variety of machines. If you would like to run the Game & Ping servers you will need Python 3.11 Installed. Which you can find here: https://www.python.org/downloads/release/python-3110/
 
 Then, once Deno is properly installed and available on the command-line, you can start [Decho](https://github.com/UnusualNorm/Decho) by going into the Decho folder and running the "Start.bat" File. You can also still run everything manually using Deno. The command is
 
