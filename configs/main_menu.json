@@ -19,9 +19,9 @@
       }
     },
     "splash_version": 8,
-    "discord_link": "https://discord.gg/xZWkVZQqZq",
-    "help_link": "https://discord.gg/xZWkVZQqZq",
-    "news_link": "https://discord.gg/xZWkVZQqZq",
+    "discord_link": "https://example.com",
+    "help_link": "https://example.com",
+    "news_link": "https://example.com",
     "type": "main_menu"
   }
 }
