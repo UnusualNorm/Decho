@@ -1,16 +1,17 @@
-import { Packet, decodePackets } from "../encoder.ts";
+import { decodePackets, Packet } from "../encoder.ts";
 import {
   ConfigRequest,
   decodeConfigRequestPayload,
 } from "../encoders/config/request.ts";
-import { ServiceType, encodeMagicPacket } from "../encoders/magic_packet.ts";
-import { configTest } from "../example.ts";
+import { encodeMagicPacket, ServiceType } from "../encoders/magic_packet.ts";
 import { log } from "../utils/logging.ts";
 import { DEBUG } from "../mod.ts";
 import { headerLookup } from "../packet.ts";
 import { Config, getConfig } from "../utils/config.ts";
 import { arrayBufferToHexString } from "../utils/string.ts";
 import { isBinaryMessage } from "../utils/websocket.ts";
+import { encodeConfigResponsePacket } from "../encoders/config/response.ts";
+import { decodeUint, UintSize } from "../utils/endian.ts";
 
 Deno.serve({ port: 8003 }, (req) => {
   if (req.headers.get("upgrade") != "websocket") {
@@ -58,7 +59,7 @@ Deno.serve({ port: 8003 }, (req) => {
         }
 
         log(
-          `[config] Client requested config type=${request.type} id=${request.id}`
+          `[config] Client requested config type=${request.type} id=${request.id}`,
         );
 
         let config: Config;
@@ -69,7 +70,25 @@ Deno.serve({ port: 8003 }, (req) => {
           continue;
         }
 
-        ws.send(configTest);
+        console.log(JSON.stringify(config));
+        ws.send(
+          encodeConfigResponsePacket(
+            decodeUint(
+              UintSize.Uint64,
+              new Uint8Array([0x7b, 0x1d, 0x0e, 0x44, 0x27, 0xee, 0x09, 0x15]),
+            ),
+            decodeUint(
+              UintSize.Uint64,
+              new Uint8Array([0x7b, 0x1d, 0x0e, 0x44, 0x27, 0xee, 0x09, 0x15]),
+            ),
+            decodeUint(
+              UintSize.Uint32,
+              new Uint8Array([0x59, 0x02, 0x00, 0x00]),
+            ),
+            config,
+            0x00,
+          ),
+        );
         ws.send(encodeMagicPacket(ServiceType.Config));
       } else {
         console.warn(`[config] Client sent unknown packet!`);

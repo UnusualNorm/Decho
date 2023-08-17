@@ -1,4 +1,4 @@
-import { Packet, decodePackets } from "../encoder.ts";
+import { decodePackets, Packet } from "../encoder.ts";
 import { encodeIpListPacket } from "../encoders/matchmaking/iplist.ts";
 import {
   matchMakerTest,
@@ -9,7 +9,7 @@ import {
   matchMakerTestHeader,
 } from "../example.ts";
 import { DEBUG } from "../mod.ts";
-import { UintSize, encodeUint } from "../utils/endian.ts";
+import { encodeUint, UintSize } from "../utils/endian.ts";
 import { arrayBufferToHexString } from "../utils/string.ts";
 import { isBinaryMessage } from "../utils/websocket.ts";
 
@@ -74,9 +74,11 @@ Deno.serve({ port: 8001 }, (req) => {
         count++;
       } else {
         console.warn(
-          `[matchmaking] Client sent unknown packet! ${arrayBufferToHexString(
-            encodeUint(UintSize.Uint64, packet.header)
-          )}`
+          `[matchmaking] Client sent unknown packet! ${
+            arrayBufferToHexString(
+              encodeUint(UintSize.Uint64, packet.header),
+            )
+          }`,
         );
       }
     }

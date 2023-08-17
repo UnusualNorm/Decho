@@ -9,7 +9,7 @@ export const configs: Config[] = [...Object.values(main_menu)];
 
 export function getConfig(type: string, id: string): Config {
   const config = configs.find(
-    (config) => config.type === type && config.id === id
+    (config) => config.type === type && config.id === id,
   );
 
   if (!config) throw new Error(`Config not found type=${type} and id=${id}`);

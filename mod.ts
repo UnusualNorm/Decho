@@ -1,4 +1,7 @@
 import "dotenv/load.ts";
+import { init } from "zstd_wasm";
+
+await init();
 
 import "./services/config.ts";
 // import "./services/login.ts";

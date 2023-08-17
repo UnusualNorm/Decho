@@ -7,7 +7,7 @@ export enum UintSize {
 export function encodeUint(
   size: UintSize,
   number: bigint,
-  bigEndian = false
+  bigEndian = false,
 ): Uint8Array {
   switch (size) {
     case UintSize.Uint16: {
@@ -34,7 +34,7 @@ export function encodeUint(
 export function decodeUint(
   size: UintSize,
   encodedBytes: Uint8Array,
-  bigEndian = false
+  bigEndian = false,
 ): bigint {
   const view = new DataView(encodedBytes.buffer);
 

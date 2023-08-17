@@ -4,7 +4,11 @@
     "https://deno.land/std@0.198.0/collections/filter_values.ts": "16e1fc456a7969e770ec5b89edf5ac97b295ca534b47c1a83f061b409aad7814",
     "https://deno.land/std@0.198.0/collections/without_all.ts": "1e3cccb1ed0659455b473c0766d9414b7710d8cef48862c899f445178f66b779",
     "https://deno.land/std@0.198.0/dotenv/load.ts": "0636983549b98f29ab75c9a22a42d9723f0a389ece5498fe971e7bb2556a12e2",
-    "https://deno.land/std@0.198.0/dotenv/mod.ts": "ff7acf1c97ba57af512ecb6f9094fa96e1f63cca1960a7687616fa86bab7e356"
+    "https://deno.land/std@0.198.0/dotenv/mod.ts": "ff7acf1c97ba57af512ecb6f9094fa96e1f63cca1960a7687616fa86bab7e356",
+    "https://deno.land/std@0.198.0/encoding/base64.ts": "144ae6234c1fbe5b68666c711dc15b1e9ee2aef6d42b3b4345bf9a6c91d70d0d",
+    "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.deno.js": "189187a43a4bdc8d695ff2f6525c8d3461cbd715333123e502a6a3bd84c272b4",
+    "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.encoded.wasm.ts": "87e04064657bf5082b47a709931f8eb3f0d2fe537a8c650cfb5c997b7b460d07",
+    "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts": "9dd80fbefd4098d43818f15e700e5e84a46f03adcd601d6592502d9746d8721b"
   },
   "npm": {
     "specifiers": {

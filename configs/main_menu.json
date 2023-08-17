@@ -1,27 +1,31 @@
 {
   "main_menu": {
+    "_ts": 1675189870550,
     "news": {
       "offseason": {
-        "link": "https://example.com",
-        "texture": null
+        "texture": null,
+        "link": "https://example.com"
+      },
+      "sentiment": {
+        "texture": "ui_mnu_news_latest",
+        "link": "https://example.com"
       }
     },
-    "_ts": 1692054552085,
-    "id": "main_menu",
     "splash": {
       "offseason": {
-        "link": "https://example.com",
-        "texture": "ui_menu_splash_screen_poster_a_shutdown_clr"
+        "texture": "ui_menu_splash_screen_poster_a_shutdown_clr",
+        "link": "https://example.com"
       },
       "season_07": {
-        "link": "https://example.com",
-        "texture": "ui_menu_splash_screen_poster_a_s7_clr"
+        "texture": "ui_menu_splash_screen_poster_a_s7_clr",
+        "link": "https://example.com"
       }
     },
+    "id": "main_menu",
     "splash_version": 8,
-    "discord_link": "https://example.com",
     "help_link": "https://example.com",
     "news_link": "https://example.com",
+    "discord_link": "https://example.com",
     "type": "main_menu"
   }
 }

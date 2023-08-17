@@ -1,7 +1,7 @@
 import iplist from "../../configs/iplist.json" assert { type: "json" };
-import { Packet, encodePacket } from "../../encoder.ts";
+import { encodePacket, Packet } from "../../encoder.ts";
 import { constant, headerLookup } from "../../packet.ts";
-import { UintSize, decodeUint, encodeUint } from "../../utils/endian.ts";
+import { decodeUint, encodeUint, UintSize } from "../../utils/endian.ts";
 
 export const getEntries = (): IpEntry[] =>
   iplist.map((entry) => ({
@@ -25,8 +25,8 @@ export function encodeIpListPacket(
   entries = getEntries(),
   unknownHeader = decodeUint(
     UintSize.Uint64,
-    new Uint8Array([0x00, 0x00, 0x04, 0x00, 0xe8, 0x03, 0x00, 0x00])
-  )
+    new Uint8Array([0x00, 0x00, 0x04, 0x00, 0xe8, 0x03, 0x00, 0x00]),
+  ),
 ): ArrayBuffer {
   const payload = new Uint8Array([
     ...encodeUint(UintSize.Uint64, unknownHeader),

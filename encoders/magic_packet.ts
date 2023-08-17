@@ -1,4 +1,4 @@
-import { Packet, encodePacket } from "../encoder.ts";
+import { encodePacket, Packet } from "../encoder.ts";
 import { constant, headerLookup, magicNumberLookup } from "../packet.ts";
 
 // TODO: Move this out of here, and into a more general location
@@ -27,7 +27,7 @@ export const getMagicNumber = (serviceType: ServiceType): number => {
 
 export function encodeMagicPacket(
   serviceType: ServiceType,
-  magicNumber = getMagicNumber(serviceType)
+  magicNumber = getMagicNumber(serviceType),
 ): ArrayBuffer {
   const packet: Packet = {
     constant,
