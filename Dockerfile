@@ -1,4 +1,4 @@
-FROM runcitadel/deno:main
+FROM lukechannings/deno
 WORKDIR /app
 
 EXPOSE 8000
