@@ -21,7 +21,7 @@ export type IpEntry = {
   unknownProperty3: number;
 };
 
-export function encodeIpListPacket(
+export function encodePingRequestPacket(
   entries = getEntries(),
   unknownHeader = decodeUint(
     UintSize.Uint64,
@@ -40,9 +40,7 @@ export function encodeIpListPacket(
         entry.octet2,
         entry.octet3,
         entry.octet4,
-        ...encodeUint(UintSize.Uint16, entry.port),
-        0x00,
-        0x00,
+        ...encodeUint(UintSize.Uint32, entry.port),
       ])
       .flat(),
   ]);

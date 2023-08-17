@@ -1,7 +1,8 @@
 import { decodePackets, Packet } from "../encoder.ts";
-import { encodeIpListPacket } from "../encoders/matchmaking/iplist.ts";
+import { encodeInitiatorPacket } from "../encoders/matchmaking/initiator.ts";
+import { encodePingRequestPacket } from "../encoders/matchmaking/ping_request.ts";
+import { encodeRegionsPacket } from "../encoders/matchmaking/regions.ts";
 import {
-  matchMakerTest,
   matchMakerTest2,
   matchMakerTest2Header,
   matchMakerTest3,
@@ -54,9 +55,9 @@ Deno.serve({ port: 8001 }, (req) => {
       if (packet.header === matchMakerTestHeader) {
         // if (count === 0) {
         console.log("test");
-        ws.send(matchMakerTest[0]);
-        ws.send(encodeIpListPacket());
-        ws.send(matchMakerTest[1]);
+        ws.send(encodeInitiatorPacket());
+        ws.send(encodePingRequestPacket());
+        ws.send(encodeRegionsPacket());
         count++;
       } else if (packet.header === matchMakerTest2Header) {
         // } else if (count === 1) {

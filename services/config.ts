@@ -70,7 +70,6 @@ Deno.serve({ port: 8003 }, (req) => {
           continue;
         }
 
-        console.log(JSON.stringify(config));
         ws.send(
           encodeConfigResponsePacket(
             decodeUint(
@@ -86,7 +85,7 @@ Deno.serve({ port: 8003 }, (req) => {
               new Uint8Array([0x59, 0x02, 0x00, 0x00]),
             ),
             config,
-            0x00,
+            request.unknownByte2,
           ),
         );
         ws.send(encodeMagicPacket(ServiceType.Config));

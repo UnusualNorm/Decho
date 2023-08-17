@@ -28,6 +28,10 @@ export const headerLookup = {
     ),
   },
   matchmaker: {
+    initiator: decodeUint(
+      UintSize.Uint64,
+      new Uint8Array([0xcb, 0xbe, 0xbf, 0xda, 0x33, 0xcf, 0x28, 0x8f]),
+    ),
     iplist: decodeUint(
       UintSize.Uint64,
       new Uint8Array([0xf3, 0xeb, 0xbf, 0x19, 0x87, 0x5f, 0xbf, 0xfa]),
