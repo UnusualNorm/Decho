@@ -9,4 +9,4 @@ EXPOSE 8003
 ADD . .
 RUN deno cache mod.ts
 
-CMD ["deno", "run", "-A", "mod.ts"]
+CMD ["run", "-A", "mod.ts"]
