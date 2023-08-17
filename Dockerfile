@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine
+FROM runcitadel/deno
 WORKDIR /app
 
 EXPOSE 8000
