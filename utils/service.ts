@@ -10,10 +10,12 @@ import {
 import { arrayBufferToHexString } from "./string.ts";
 
 type PacketSender = (packet: DecodedPacket) => void;
+// deno-lint-ignore no-explicit-any
 type WebsocketWithData<Data extends Record<string, any>> = WebSocket & {
   data: Partial<Data>;
 };
 
+// deno-lint-ignore no-explicit-any
 export const createBasicService = <Data extends Record<string, any>>(
   name: string,
   port: number,

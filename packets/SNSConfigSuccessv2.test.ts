@@ -2,7 +2,7 @@ import { assertEquals } from "$std/assert/mod.ts";
 import { init } from "zstd_wasm";
 import {
   decodeSNSConfigSuccessv2Payload,
-  encodeSNSConfigSuccessv2Payload,
+  // encodeSNSConfigSuccessv2Payload,
   SNSConfigSuccessv2Data,
 } from "./SNSConfigSuccessv2.ts";
 import { idStringToInt, typeStringToInt } from "../utils/config.ts";
