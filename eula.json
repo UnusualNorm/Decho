@@ -1,0 +1,18 @@
+{
+  "link_cc": "https://bit.ly/EchoVR_COCReporting",
+  "mark_as_read_profile_key": "legal|eula_version",
+  "version": 1,
+  "link_pp": "http://www.readyatdawn.com/privacy-policy/",
+  "mark_as_read_profile_key_ga": "legal|game_admin_version",
+  "version_ga": 1,
+  "text": "By playing Echo VR, you agree to the Echo VR End User License Agreement, Terms of Service, and Privacy Policy contained in the links below.",
+  "link_vr": "http://www.readyatdawn.com/eula-echo-vr/",
+  "link_cp": "https://bit.ly/3TMjub6",
+  "link_ec": "http://www.readyatdawn.com/eula-echo-combat/",
+  "link_ea": "http://www.readyatdawn.com/eula-echo-arena/",
+  "lang": "en",
+  "link_ga": "http://www.readyatdawn.com/game-admins/",
+  "text_ga": "As a reminder, to ensure the safety of players in Echo VR, Game Admins may remotely monitor and record your gameplay for inappropriate behavior or content. Game Admins may monitor players while they are in any lobby or participating in a match to help maintain an enjoyable in-game environment and ensure the players are following the Echo VR Code of Conduct and Conduct in VR Policy. Note that in certain instances, you may not be aware of a Game Admin's presence. Anyone who does not follow the Rules and the Conduct in VR Policy, may be temporarily banned to keep Echo VR fun and welcoming for all players.",
+  "link_tc": "http://www.readyatdawn.com/terms-conditions/",
+  "type": "eula"
+}

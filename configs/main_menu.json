@@ -4,28 +4,28 @@
     "news": {
       "offseason": {
         "texture": null,
-        "link": "https://example.com"
+        "link": "https://medium.com/echo-games-blog"
       },
       "sentiment": {
         "texture": "ui_mnu_news_latest",
-        "link": "https://example.com"
+        "link": "https://medium.com/@EchoGames"
       }
     },
     "splash": {
       "offseason": {
         "texture": "ui_menu_splash_screen_poster_a_shutdown_clr",
-        "link": "https://example.com"
+        "link": "http://bit.ly/3XRCIhD"
       },
       "season_07": {
         "texture": "ui_menu_splash_screen_poster_a_s7_clr",
-        "link": "https://example.com"
+        "link": "https://medium.com/@EchoGames"
       }
     },
     "id": "main_menu",
     "splash_version": 8,
-    "help_link": "https://example.com",
-    "news_link": "https://example.com",
-    "discord_link": "https://example.com",
+    "help_link": "https://readyatdawn.zendesk.com/hc/en-us",
+    "news_link": "https://medium.com/@EchoGames",
+    "discord_link": "https://discord.gg/ymAYmnZ",
     "type": "main_menu"
   }
 }

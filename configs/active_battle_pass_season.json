@@ -1,0 +1,44 @@
+{
+  "battle_pass_season_00_invalid": {
+    "learn_more_link": null,
+    "archives": { "marketing_menu": null, "marketing_lobby": null },
+    "id": "battle_pass_season_00_invalid",
+    "offseason": false,
+    "days_remaining_to_trigger_upsell": 0,
+    "ui": {
+      "offseason_start_date_text": "INVALID",
+      "offseason_tier_unlocked_text": "INVALID",
+      "season_progression_upsell_text": "INVALID",
+      "season_track_header_text_upsell": "INVALID",
+      "icon_texture_texture": null,
+      "offseason_time_to_next_season_text": "INVALID",
+      "season_track_header_text_start": "INVALID"
+    },
+    "premium_price": { "echopoints": 0 },
+    "bp_xp_boost_reward_solo": 0,
+    "bp_currency_rewards": null,
+    "premium_skus": null,
+    "tier_rewards": null,
+    "marketing": {
+      "menu_season_panel_upsell_texture": null,
+      "lobby_poster_upsell_texture": null,
+      "lobby_poster_start_texture": null,
+      "menu_season_panel_start_texture": null
+    },
+    "bp_xp_results": { "win": 0, "loss": 0 },
+    "bp_xp_requirements": {
+      "use_constant_tier_xp_requirements": true,
+      "constant_tier_xp_requirements": 0,
+      "variable_tier_xp_requirements": null
+    },
+    "season_number": 0,
+    "tier_price": { "echopoints": 0 },
+    "menu_link_upsell": "https://bit.ly/3y79nDp",
+    "_ts": 1621270670491,
+    "description": null,
+    "menu_link": "https://bit.ly/3y79nDp",
+    "bp_xp_boost_reward_party": 0,
+    "title": "Echo Pass: Invalid",
+    "type": "active_battle_pass_season"
+  }
+}

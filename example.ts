@@ -1,11 +1,11 @@
-import { decodeUint, UintSize } from "./utils/endian.ts";
+import { fromUint8Array, UintSize } from "./utils/endian.ts";
 
-export const matchMakerTestHeader = decodeUint(
+export const matchMakerTestHeader = fromUint8Array(
   UintSize.Uint64,
   new Uint8Array([0xf5, 0xa3, 0x9a, 0x81, 0x01, 0x2a, 0x2c, 0x31]),
 );
 
-export const matchMakerTest2Header = decodeUint(
+export const matchMakerTest2Header = fromUint8Array(
   UintSize.Uint64,
   new Uint8Array([0x4f, 0xae, 0x33, 0x30, 0x04, 0xd0, 0x47, 0x60]),
 );
@@ -635,7 +635,7 @@ export const matchMakerTest2 = [
   ]),
 ];
 
-export const matchMakerTest3Header = decodeUint(
+export const matchMakerTest3Header = fromUint8Array(
   UintSize.Uint64,
   new Uint8Array([0x05, 0x1a, 0xc8, 0xa0, 0xb2, 0xfa, 0xf2, 0x9a]),
   //   new Uint8Array([0x50, 0xb6, 0xeb, 0xe0, 0x7a, 0x77, 0x8b, 0x12])

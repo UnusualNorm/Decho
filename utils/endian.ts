@@ -4,7 +4,7 @@ export enum UintSize {
   Uint64,
 }
 
-export function encodeUint(
+export function toUint8Array(
   size: UintSize,
   number: bigint,
   bigEndian = false,
@@ -31,7 +31,7 @@ export function encodeUint(
   }
 }
 
-export function decodeUint(
+export function fromUint8Array(
   size: UintSize,
   encodedBytes: Uint8Array,
   bigEndian = false,
@@ -52,4 +52,14 @@ export function decodeUint(
   }
 
   return decodedNumber;
+}
+
+export function littleToBigEndian(size: UintSize, number: bigint): bigint {
+  const bytes = toUint8Array(size, number, true);
+  return fromUint8Array(size, bytes);
+}
+
+export function bigToLittleEndian(size: UintSize, number: bigint): bigint {
+  const bytes = toUint8Array(size, number, false);
+  return fromUint8Array(size, bytes);
 }

@@ -3,10 +3,10 @@ import { init } from "zstd_wasm";
 
 await init();
 
+import "./services/login.ts";
+import "./services/matching.ts";
+import "./services/transaction.ts";
 import "./services/config.ts";
-// import "./services/login.ts";
-import "./services/matchmaking.ts";
-// import "./services/transaction.ts";
 
 export const DEBUG = Deno.env.get("DEBUG") === "true";
 

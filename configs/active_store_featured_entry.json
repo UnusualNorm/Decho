@@ -1,0 +1,62 @@
+{
+  "store_featured_entry_0013": {
+    "entry_number": 13,
+    "marketing": {
+      "menu_store_panel_start_texture": "ui_mpl_menu_store_featured_entry_0013",
+      "menu_store_panel_upsell_texture": "ui_mpl_menu_store_featured_entry_0013_upsell",
+      "lobby_poster_upsell_texture": "ui_mpl_poster_store_featured_entry_0013_upsell_emi",
+      "lobby_poster_start_texture": "ui_mpl_poster_store_featured_entry_0013_emi"
+    },
+    "ui": {
+      "store_panel_header_start_text": "SEASON 7",
+      "store_panel_header_upsell_text": "FEATURED ITEM INFO | GONE SOON!"
+    },
+    "type": "active_store_featured_entry",
+    "store_slots": [
+      {
+        "reward_items": [
+          {
+            "bundle": {
+              "sku": "store_rwd_chassis_noble_a_bundled",
+              "price": { "echopoints": 140 }
+            },
+            "normal": {
+              "sku": "store_rwd_chassis_noble_a",
+              "price": { "echopoints": 140 }
+            },
+            "reward_id": "rwd_chassis_noble_a"
+          },
+          {
+            "bundle": {
+              "sku": "store_rwd_bracer_noble_a_bundled",
+              "price": { "echopoints": 60 }
+            },
+            "normal": {
+              "sku": "store_rwd_bracer_noble_a",
+              "price": { "echopoints": 60 }
+            },
+            "reward_id": "rwd_bracer_noble_a"
+          },
+          {
+            "bundle": {
+              "sku": "store_rwd_booster_noble_a_bundled",
+              "price": { "echopoints": 50 }
+            },
+            "normal": {
+              "sku": "store_rwd_booster_noble_a",
+              "price": { "echopoints": 50 }
+            },
+            "reward_id": "rwd_booster_noble_a"
+          }
+        ],
+        "bundle_icon": "ui_sto_feature_0008_clr",
+        "bundle_name": "SEASON 7",
+        "bundle_allow_individual_item_purchases": true,
+        "bundle_description": null
+      }
+    ],
+    "_ts": 1675113394826,
+    "days_remaining_to_trigger_upsell": 3,
+    "id": "store_featured_entry_0013"
+  }
+}
