@@ -28,7 +28,7 @@ for (let i = 0; i < packets.length; i++) {
   const [data, payload] = packets[i];
   Deno.test(`encode SNSConfigRequestv2 payload ${i}`, () =>
     assertEquals(
-      new Uint8Array(encodeSNSConfigRequestv2Payload(data, true)),
+      encodeSNSConfigRequestv2Payload(data, true),
       payload,
     ));
 

@@ -1,5 +1,7 @@
+import { magicNumber } from "../types/packet.ts";
 import { getConfig, idStringToInt, typeStringToInt } from "../utils/config.ts";
 import { createBasicService } from "../utils/service.ts";
+
 import { SNSConfigRequestv2Header } from "../packets/SNSConfigRequestv2.ts";
 import { SNSConfigSuccessv2Header } from "../packets/SNSConfigSuccessv2.ts";
 import { STcpConnectionUnrequireEventHeader } from "../packets/STcpConnectionUnrequireEvent.ts";
@@ -10,6 +12,7 @@ createBasicService(
   () => {},
   () => {},
   (_socket, packet, sendPacket) => {
+    if (!packet.decoded) return;
     if (packet.header !== SNSConfigRequestv2Header) {
       console.warn(
         `[config] Client sent invalid packet... (${
@@ -20,20 +23,25 @@ createBasicService(
     }
 
     console.log(
-      `[config] Client requested config... (${packet.data.config.type}, ${packet.data.config.id})`,
+      `[config] Client requested config... (${packet.payload.config.type}, ${packet.payload.config.id})`,
     );
 
-    const config = getConfig(packet.data.config.type, packet.data.config.id);
+    const config = getConfig(
+      packet.payload.config.type,
+      packet.payload.config.id,
+    );
     if (!config) {
       console.error(
-        `[config] Failed to find config... (${packet.data.config.type}, ${packet.data.config.id})`,
+        `[config] Failed to find config... (${packet.payload.config.type}, ${packet.payload.config.id})`,
       );
       return;
     }
 
     sendPacket({
+      magicNumber,
+      decoded: true,
       header: SNSConfigSuccessv2Header,
-      data: {
+      payload: {
         type: typeStringToInt(config.type)!,
         id: idStringToInt(config.id)!,
         config,
@@ -41,8 +49,10 @@ createBasicService(
     });
 
     sendPacket({
+      magicNumber,
+      decoded: true,
       header: STcpConnectionUnrequireEventHeader,
-      data: {
+      payload: {
         unknownByte: 0x04,
       },
     });

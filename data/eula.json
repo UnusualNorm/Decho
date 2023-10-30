@@ -1,0 +1,18 @@
+{
+  "link_cc": "https://example.com",
+  "mark_as_read_profile_key": "legal|eula_version",
+  "version": 1,
+  "link_pp": "https://example.com",
+  "mark_as_read_profile_key_ga": "legal|game_admin_version",
+  "version_ga": 1,
+  "text": "Hello World!",
+  "link_vr": "https://example.com",
+  "link_cp": "https://example.com",
+  "link_ec": "https://example.com",
+  "link_ea": "https://example.com",
+  "lang": "en",
+  "link_ga": "https://example.com",
+  "text_ga": "Hello World!",
+  "link_tc": "https://example.com",
+  "type": "eula"
+}

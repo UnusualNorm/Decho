@@ -1,0 +1,59 @@
+{
+  "config_data": {
+    "active_battle_pass_season": {
+      "endtime": 0,
+      "id": "active_battle_pass_season",
+      "starttime": 0
+    },
+    "active_store_entry": {
+      "endtime": 0,
+      "id": "active_store_entry",
+      "starttime": 0
+    },
+    "active_store_featured_entry": {
+      "endtime": 0,
+      "id": "active_store_featured_entry",
+      "starttime": 0
+    }
+  },
+  "env": "live",
+  "iap_unlocked": false,
+  "match_type_specific_matchmakers": {
+    "ai": {
+      "host_suffix": "ai",
+      "match_types": [
+        "echo_arena_public_ai"
+      ],
+      "queue_id": "1004"
+    },
+    "arena": {
+      "host_suffix": "arena",
+      "match_types": [
+        "echo_arena"
+      ],
+      "queue_id": "1003"
+    },
+    "combat": {
+      "host_suffix": "combat",
+      "match_types": [
+        "echo_combat"
+      ],
+      "queue_id": "1002"
+    },
+    "social": {
+      "host_suffix": "social",
+      "match_types": [
+        "social_2.0"
+      ],
+      "queue_id": "1001"
+    }
+  },
+  "matchmaker_queue_mode": "disabled",
+  "remote_log_errors": true,
+  "remote_log_metrics": true,
+  "remote_log_rich_presence": true,
+  "remote_log_richpresence": true,
+  "remote_log_social": true,
+  "remote_log_warnings": true,
+  "skip_combat_entitlement_checks": true
+}

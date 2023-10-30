@@ -55,6 +55,10 @@
     "https://deno.land/std@0.204.0/encoding/_util.ts": "f368920189c4fe6592ab2e93bd7ded8f3065b84f95cd3e036a4a10a75649dcba",
     "https://deno.land/std@0.204.0/encoding/base64.ts": "cc03110d6518170aeaa68ec97f89c6d6e2276294b30807e7332591d7ce2e4b72",
     "https://deno.land/std@0.204.0/fmt/colors.ts": "c51c4642678eb690dcf5ffee5918b675bf01a33fba82acf303701ae1a4f8c8d9",
+    "https://deno.land/x/foras@v2.1.4/src/deno/mod.ts": "c350ea5f32938e6dcb694df3761615f316d730dafc57440e9afd5f36f8e309fd",
+    "https://deno.land/x/foras@v2.1.4/src/deno/mods/mod.ts": "cc099bbce378f3cdaa94303e8aff2611e207442e5ac2d5161aba636bb4a95b46",
+    "https://deno.land/x/foras@v2.1.4/wasm/pkg/foras.js": "06f8875b456918b9671d52133f64f3047f1c95540feda87fdd4a55ba3d30091d",
+    "https://deno.land/x/foras@v2.1.4/wasm/pkg/foras.wasm.js": "2df8522df7243b0f05b1d188e220629cd5d2c92080a5f1407e15396fc35bebb3",
     "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.deno.js": "189187a43a4bdc8d695ff2f6525c8d3461cbd715333123e502a6a3bd84c272b4",
     "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.encoded.wasm.ts": "87e04064657bf5082b47a709931f8eb3f0d2fe537a8c650cfb5c997b7b460d07",
     "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts": "9dd80fbefd4098d43818f15e700e5e84a46f03adcd601d6592502d9746d8721b"

@@ -2,9 +2,9 @@
   "balance": {
     "currency": {
       "echopoints": {
-        "val": 130
+        "val": 0
       }
     }
   },
-  "transactionid": 85
+  "transactionid": 0
 }

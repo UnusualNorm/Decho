@@ -2,6 +2,7 @@
   "imports": {
     "$std/": "https://deno.land/std@0.204.0/",
     "dotenv/": "https://deno.land/std@0.198.0/dotenv/",
-    "zstd_wasm": "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts"
+    "zstd_wasm": "https://deno.land/x/zstd_wasm@0.0.20/deno/zstd.ts",
+    "foras": "https://deno.land/x/foras@v2.1.4/src/deno/mod.ts"
   }
 }

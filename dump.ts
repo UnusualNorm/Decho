@@ -1,7 +1,5 @@
-import { init } from "zstd_wasm";
-import { decodePackets } from "./utils/packet.ts";
-
-await init();
+import { deserializePackets } from "./utils/packet.ts";
+import { arrayBufferToHexString } from "./utils/string.ts";
 
 // UNSAFE CODE
 const importDump = async (path: string): Promise<number[]> => {
@@ -21,22 +19,27 @@ const importDump = async (path: string): Promise<number[]> => {
   const array = `[${lines.join("").slice(0, -1)}]`;
   await Deno.writeTextFile("./dumpArray.txt", array);
   const parsedArray = eval(array);
+  await Deno.writeFile("./dumpArray.bin", new Uint8Array(parsedArray));
   return parsedArray;
 };
 
-const uint8ArrayToArray = (uint8Array: Uint8Array): number[] => {
-  const array: number[] = [];
-  for (const byte of uint8Array) {
-    array.push(byte);
-  }
-  return array;
-};
+// const uint8ArrayToArray = (uint8Array: Uint8Array): number[] => {
+//   const array: number[] = [];
+//   for (const byte of uint8Array) {
+//     array.push(byte);
+//   }
+//   return array;
+// };
 
 const dump = new Uint8Array(await importDump("./dump.txt"));
-const packets = decodePackets(dump, true);
+const packets = deserializePackets(dump, true);
 
 for (const packet of packets) {
-  console.log(
-    JSON.stringify(uint8ArrayToArray(new Uint8Array(packet.payload))),
-  );
+  if (!packet.decoded) {
+    console.log(
+      arrayBufferToHexString(packet.payload),
+    );
+  } else {
+    console.log(packet.payload);
+  }
 }

@@ -1,13 +1,10 @@
 import { assertEquals } from "$std/assert/mod.ts";
-import { init } from "zstd_wasm";
 import {
   decodeSNSConfigSuccessv2Payload,
-  // encodeSNSConfigSuccessv2Payload,
+  encodeSNSConfigSuccessv2Payload,
   SNSConfigSuccessv2Data,
 } from "./SNSConfigSuccessv2.ts";
 import { idStringToInt, typeStringToInt } from "../utils/config.ts";
-
-await init();
 
 // deno-fmt-ignore
 const packets: [SNSConfigSuccessv2Data, Uint8Array][] = [
@@ -47,16 +44,15 @@ const packets: [SNSConfigSuccessv2Data, Uint8Array][] = [
 
 for (let i = 0; i < packets.length; i++) {
   const [data, payload] = packets[i];
-  // FIXME: Client seems to like our responses, however our tests don't...
   // Since compression is wonky, we'll just make sure we can encode and decode into the same data
-  // Deno.test(`encode SNSConfigSuccessv2 payload ${i}`, () =>
-  //   assertEquals(
-  //     decodeSNSConfigSuccessv2Payload(
-  //       encodeSNSConfigSuccessv2Payload(data, true),
-  //       true,
-  //     ),
-  //     data,
-  //   ));
+  Deno.test(`encode SNSConfigSuccessv2 payload ${i}`, () =>
+    assertEquals(
+      decodeSNSConfigSuccessv2Payload(
+        encodeSNSConfigSuccessv2Payload(data, true),
+        true,
+      ),
+      data,
+    ));
 
   Deno.test(`decode SNSConfigSuccessv2 payload ${i}`, () =>
     assertEquals(

@@ -1,15 +1,15 @@
-import type { DecodedPacket, RawPacket } from "../types/packet.ts";
+import type { Packet } from "../types/packet.ts";
 import { DEBUG } from "../mod.ts";
 import { isArrayBuffer } from "./buffer.ts";
 import {
   decodePacket,
-  decodePackets,
+  deserializePackets,
   encodePacket,
-  encodePackets,
+  serializePackets,
 } from "./packet.ts";
 import { arrayBufferToHexString } from "./string.ts";
 
-type PacketSender = (packet: DecodedPacket) => void;
+type PacketSender = (packet: Packet) => void;
 // deno-lint-ignore no-explicit-any
 type WebsocketWithData<Data extends Record<string, any>> = WebSocket & {
   data: Partial<Data>;
@@ -26,7 +26,7 @@ export const createBasicService = <Data extends Record<string, any>>(
   onDisconnect: (socket: WebsocketWithData<Data>) => void,
   onPacket: (
     socket: WebsocketWithData<Data>,
-    packet: DecodedPacket,
+    packet: Packet,
     sendPacket: PacketSender,
   ) => void,
 ) =>
@@ -58,9 +58,9 @@ export const createBasicService = <Data extends Record<string, any>>(
       collectingPackets = false;
     };
 
-    const sendPacket: PacketSender = (decodedPacket) => {
-      const packet = encodePacket(decodedPacket);
-      const rawPacket = encodePackets([packet], true);
+    const sendPacket: PacketSender = (packet) => {
+      packet = encodePacket(packet);
+      const rawPacket = serializePackets([packet], true);
 
       DEBUG &&
         console.debug(
@@ -88,9 +88,9 @@ export const createBasicService = <Data extends Record<string, any>>(
       DEBUG &&
         console.debug(`[${name}] Client: ${arrayBufferToHexString(e.data)}`);
 
-      let packets: RawPacket[];
+      let packets: Packet[];
       try {
-        packets = decodePackets(new Uint8Array(e.data), true);
+        packets = deserializePackets(new Uint8Array(e.data), true);
       } catch (e) {
         console.error(`[${name}] Client sent invalid packet... (${e})`);
         return;
@@ -98,7 +98,7 @@ export const createBasicService = <Data extends Record<string, any>>(
 
       startCollectingPackets();
       for (const rawPacket of packets) {
-        let decodedPacket: DecodedPacket;
+        let decodedPacket: Packet;
         try {
           decodedPacket = decodePacket(rawPacket);
         } catch (e) {

@@ -1,15 +1,18 @@
 import type { Config } from "../types/config.ts";
 import { isConfig } from "../types/config.ts";
 
-import { compress, decompress } from "zstd_wasm";
+import { compress, decompress, init } from "zstd_wasm";
 import { toUint8Array } from "../utils/endian.ts";
 import { UintSize } from "../utils/endian.ts";
-import { arrayBufferToHexString } from "../utils/string.ts";
+
+await init();
 
 export const SNSConfigSuccessv2Header = 0x12d07b6f58afcdb9n;
 export const SNSConfigSuccessv2BaseLength = 8 + // type
   8 + // id
-  4; // length
+  4 + // length
+  9 + // zstd frame
+  1; // padding
 
 export type SNSConfigSuccessv2Data = {
   type: bigint; // 64-bit - first byte ignored (nonce)
@@ -19,10 +22,7 @@ export type SNSConfigSuccessv2Data = {
 
 export const isSNSConfigSuccessv2Payload = (
   payload: Uint8Array,
-): boolean =>
-  payload.byteLength >= SNSConfigSuccessv2BaseLength +
-      9 + // zstd frame
-      1; // padding
+): boolean => payload.byteLength >= SNSConfigSuccessv2BaseLength;
 
 export const isSNSConfigSuccessv2Data = (
   data: unknown,
@@ -46,18 +46,16 @@ export const encodeSNSConfigSuccessv2Payload = (
     ...textEncoder.encode(JSON.stringify(data.config)),
     padding,
   ]);
-  const compressedConfigPayload = compress(configPayload, 4);
-  console.log(arrayBufferToHexString(compressedConfigPayload));
+  const compressedConfigPayload = compress(configPayload);
 
   const payload = new Uint8Array([
     ...toUint8Array(UintSize.Uint64, data.type, true),
     ...toUint8Array(UintSize.Uint64, data.id, true),
     ...toUint8Array(
       UintSize.Uint32,
-      BigInt(compressedConfigPayload.byteLength),
+      BigInt(configPayload.byteLength),
     ),
     ...compressedConfigPayload,
-    padding,
   ]);
 
   if (strict && !isSNSConfigSuccessv2Payload(payload)) {
@@ -79,7 +77,6 @@ export const decodeSNSConfigSuccessv2Payload = (
   const dataView = new DataView(payload.buffer);
   const type = dataView.getBigUint64(0);
   const id = dataView.getBigUint64(8);
-
   const configPayloadLength = dataView.getUint32(16, true);
   const configPayload = new Uint8Array(decompress(
     payload.slice(20),
