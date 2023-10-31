@@ -9,7 +9,7 @@ import {
 const packets: [SNSLobbyMatchmakerStatusData, Uint8Array][] = [
   [
     {
-      unknownNumber: 0x00000000
+      status: 0x00000000
     },
     new Uint8Array([0x00,0x00,0x00,0x00])
   ],

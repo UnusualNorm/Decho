@@ -55,5 +55,5 @@
   "remote_log_richpresence": true,
   "remote_log_social": true,
   "remote_log_warnings": true,
-  "skip_combat_entitlement_checks": true
+  "skip_combat_entitlement_checks": false
 }

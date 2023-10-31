@@ -6,8 +6,8 @@ export const SNSReconcileIAPResultBaseLength = 8 + // nonce
   1; // padding
 
 export type SNSReconcileIAPResultData = {
-  nonce: bigint;
   unknownHeader: bigint;
+  oculusId: bigint;
   config: {
     balance: {
       currency: {
@@ -28,8 +28,8 @@ export const isSNSReconcileIAPResultData = (
   data: unknown,
 ): data is SNSReconcileIAPResultData =>
   typeof data === "object" && data !== null &&
-  "nonce" in data && typeof data.nonce === "bigint" &&
   "unknownHeader" in data && typeof data.unknownHeader === "bigint" &&
+  "oculusId" in data && typeof data.oculusId === "bigint" &&
   "config" in data && typeof data.config === "object" && data.config !== null &&
   "balance" in data.config && typeof data.config.balance === "object" &&
   data.config.balance !== null &&
@@ -56,8 +56,8 @@ export const encodeSNSReconcileIAPResultPayload = (
   const padding = 0x00;
   const configPayload = textEncoder.encode(JSON.stringify(data.config));
   const payload = new Uint8Array([
-    ...toUint8Array(UintSize.Uint64, data.nonce, true),
-    ...toUint8Array(UintSize.Uint64, data.unknownHeader, true),
+    ...toUint8Array(UintSize.Uint64, data.unknownHeader),
+    ...toUint8Array(UintSize.Uint64, data.oculusId),
     ...configPayload,
     padding,
   ]);
@@ -79,16 +79,16 @@ export const decodeSNSReconcileIAPResultPayload = (
   }
 
   const dataView = new DataView(payload.buffer);
-  const nonce = dataView.getBigUint64(0);
-  const unknownHeader = dataView.getBigUint64(8);
+  const unknownHeader = dataView.getBigUint64(0, true);
+  const oculusId = dataView.getBigUint64(8, true);
   const config = JSON.parse(
     textDecoder.decode(payload.slice(16, -1)),
   );
   const _padding = payload[payload.byteLength - 1];
 
   const data: SNSReconcileIAPResultData = {
-    nonce,
     unknownHeader,
+    oculusId,
     config,
   };
 

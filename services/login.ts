@@ -20,6 +20,7 @@ import { SNSLoginSettingsHeader } from "../packets/SNSLoginSettings.ts";
 import { SNSLoggedInUserProfileSuccessHeader } from "../packets/SNSLoggedInUserProfileSuccess.ts";
 import { SNSLoggedInUserProfileRequestHeader } from "../packets/SNSLoggedInUserProfileRequest.ts";
 import { SNSDocumentSuccessHeader } from "../packets/SNSDocumentSuccess.ts";
+import { CLIENT_DEBUG } from "../mod.ts";
 
 createBasicService(
   "login",
@@ -27,10 +28,8 @@ createBasicService(
   () => {},
   () => {},
   (_socket, packet, sendPacket) => {
-    console.log(packet.header.toString(16));
     switch (packet.header) {
       case SNSLoginRequestV2Header: {
-        console.log("Got Login request");
         const ovr_id = packet.payload.slice(24, 32);
 
         const loginID = new Uint8Array(16).fill(0xFF);
@@ -50,7 +49,6 @@ createBasicService(
             ...ovr_id,
           ]),
         });
-        console.log("Sent login confirmation");
 
         sendPacket({
           magicNumber,
@@ -60,7 +58,6 @@ createBasicService(
             unknownByte: 0x4b,
           },
         });
-        console.log("Sent auth acknowledgement");
 
         sendPacket({
           magicNumber,
@@ -68,9 +65,9 @@ createBasicService(
           header: SNSLoginSettingsHeader,
           payload: login_settings,
         });
-        console.log("Sent auth login_settings");
         break;
       }
+
       case SNSLoggedInUserProfileRequestHeader: {
         const ovr_id = fromUint8Array(
           UintSize.Uint64,
@@ -89,7 +86,6 @@ createBasicService(
             userProfile: user_profile,
           },
         });
-        console.log("Sending player information");
 
         sendPacket({
           magicNumber,
@@ -99,7 +95,6 @@ createBasicService(
             unknownByte: 0x4b,
           },
         });
-        console.log("Sending player info acknowledgement");
 
         sendPacket({
           magicNumber,
@@ -110,7 +105,6 @@ createBasicService(
             document: eula,
           },
         });
-        console.log("Sending eula");
 
         sendPacket({
           magicNumber,
@@ -120,7 +114,11 @@ createBasicService(
             unknownByte: 0x4b,
           },
         });
-        console.log("Sending eula acknowledgement");
+        break;
+      }
+
+      case 0xe1ea875168474b24n: {
+        CLIENT_DEBUG && console.debug(new TextDecoder().decode(packet.payload));
         break;
       }
     }

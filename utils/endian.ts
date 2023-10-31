@@ -55,11 +55,11 @@ export function fromUint8Array(
 }
 
 export function littleToBigEndian(size: UintSize, number: bigint): bigint {
-  const bytes = toUint8Array(size, number, true);
-  return fromUint8Array(size, bytes);
+  const bytes = toUint8Array(size, number, false);
+  return fromUint8Array(size, bytes, true);
 }
 
 export function bigToLittleEndian(size: UintSize, number: bigint): bigint {
-  const bytes = toUint8Array(size, number, false);
-  return fromUint8Array(size, bytes);
+  const bytes = toUint8Array(size, number, true);
+  return fromUint8Array(size, bytes, false);
 }

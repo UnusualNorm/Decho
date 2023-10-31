@@ -1,5 +1,5 @@
 import type { Packet } from "../types/packet.ts";
-import { DEBUG } from "../mod.ts";
+import { SERVER_DEBUG } from "../mod.ts";
 import { isArrayBuffer } from "./buffer.ts";
 import {
   decodePacket,
@@ -22,13 +22,13 @@ export const createBasicService = <Data extends Record<string, any>>(
   onConnect: (
     socket: WebsocketWithData<Data>,
     sendPacket: PacketSender,
-  ) => void,
+  ) => void | Promise<void>,
   onDisconnect: (socket: WebsocketWithData<Data>) => void,
   onPacket: (
     socket: WebsocketWithData<Data>,
     packet: Packet,
     sendPacket: PacketSender,
-  ) => void,
+  ) => void | Promise<void>,
 ) =>
   Deno.serve({ port }, (req) => {
     if (req.headers.get("upgrade") != "websocket") {
@@ -62,7 +62,7 @@ export const createBasicService = <Data extends Record<string, any>>(
       packet = encodePacket(packet);
       const rawPacket = serializePackets([packet], true);
 
-      DEBUG &&
+      SERVER_DEBUG &&
         console.debug(
           `[${name}] Server: ${arrayBufferToHexString(rawPacket)}`,
         );
@@ -79,13 +79,13 @@ export const createBasicService = <Data extends Record<string, any>>(
       stopCollectingPackets();
     };
 
-    socket.onmessage = (e) => {
+    socket.onmessage = async (e) => {
       if (!isArrayBuffer(e.data)) {
         console.warn(`[${name}] Client sent non-binary message...`);
         return;
       }
 
-      DEBUG &&
+      SERVER_DEBUG &&
         console.debug(`[${name}] Client: ${arrayBufferToHexString(e.data)}`);
 
       let packets: Packet[];
@@ -96,7 +96,9 @@ export const createBasicService = <Data extends Record<string, any>>(
         return;
       }
 
+      const packetHandlers: (Promise<void> | void)[] = [];
       startCollectingPackets();
+
       for (const rawPacket of packets) {
         let decodedPacket: Packet;
         try {
@@ -106,8 +108,10 @@ export const createBasicService = <Data extends Record<string, any>>(
           return;
         }
 
-        onPacket(socket, decodedPacket, sendPacket);
+        packetHandlers.push(onPacket(socket, decodedPacket, sendPacket));
       }
+
+      await Promise.all(packetHandlers);
       stopCollectingPackets();
     };
 

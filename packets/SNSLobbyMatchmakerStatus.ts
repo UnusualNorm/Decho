@@ -4,7 +4,7 @@ export const SNSLobbyMatchmakerStatusHeader = 0xcbbebfda33cf288fn;
 export const SNSLobbyMatchmakerStatusBaseLength = 4;
 
 export type SNSLobbyMatchmakerStatusData = {
-  unknownNumber: number;
+  status: number;
 };
 
 export const isSNSLobbyMatchmakerStatusPayload = (
@@ -15,7 +15,7 @@ export const isSNSLobbyMatchmakerStatusData = (
   data: unknown,
 ): data is SNSLobbyMatchmakerStatusData =>
   typeof data === "object" && data !== null &&
-  "unknownNumber" in data && typeof data.unknownNumber === "number";
+  "status" in data && typeof data.status === "number";
 
 export const encodeSNSLobbyMatchmakerStatusPayload = (
   data: SNSLobbyMatchmakerStatusData,
@@ -25,7 +25,7 @@ export const encodeSNSLobbyMatchmakerStatusPayload = (
     throw new Error("Invalid SNSLobbyMatchmakerStatus data");
   }
 
-  const payload = toUint8Array(UintSize.Uint32, BigInt(data.unknownNumber));
+  const payload = toUint8Array(UintSize.Uint32, BigInt(data.status));
 
   if (strict && !isSNSLobbyMatchmakerStatusPayload(payload)) {
     throw new Error("Invalid SNSLobbyMatchmakerStatus payload");
@@ -43,7 +43,7 @@ export const decodeSNSLobbyMatchmakerStatusPayload = (
   }
 
   const data: SNSLobbyMatchmakerStatusData = {
-    unknownNumber: Number(fromUint8Array(UintSize.Uint32, payload)),
+    status: Number(fromUint8Array(UintSize.Uint32, payload)),
   };
 
   if (strict && !isSNSLobbyMatchmakerStatusData(data)) {
