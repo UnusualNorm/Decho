@@ -1,8 +1,8 @@
 {
-  "battle_pass_season_00_invalid": {
+  "active_battle_pass_season": {
     "learn_more_link": null,
     "archives": { "marketing_menu": null, "marketing_lobby": null },
-    "id": "battle_pass_season_00_invalid",
+    "id": "active_battle_pass_season",
     "offseason": false,
     "days_remaining_to_trigger_upsell": 0,
     "ui": {
@@ -33,12 +33,12 @@
     },
     "season_number": 0,
     "tier_price": { "echopoints": 0 },
-    "menu_link_upsell": "https://bit.ly/3y79nDp",
-    "_ts": 1621270670491,
+    "menu_link_upsell": "https://example.com",
+    "_ts": 0,
     "description": null,
-    "menu_link": "https://bit.ly/3y79nDp",
+    "menu_link": "https://example.com",
     "bp_xp_boost_reward_party": 0,
-    "title": "Echo Pass: Invalid",
+    "title": "Hello World!",
     "type": "active_battle_pass_season"
   }
 }
