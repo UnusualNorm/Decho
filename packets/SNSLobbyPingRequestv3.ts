@@ -63,7 +63,7 @@ export const encodeSNSLobbyPingRequestv3Payload = (
         server.publicOctet2,
         server.publicOctet3,
         server.publicOctet4,
-        ...toUint8Array(UintSize.Uint16, BigInt(server.port)),
+        ...toUint8Array(UintSize.Uint16, BigInt(server.port), true),
         ...toUint8Array(UintSize.Uint16, BigInt(padding)),
       ])
       .flat(),
